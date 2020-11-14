@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">QuizHack1</string>
+    <string name="Projectname">QuizHack</string>
+    <string name="selectuser">Select User</string>
+    <string name="user">Student</string>
+    <string name="admin">Admin</string>
+    <string name="next">Next</string>
+    <string name="email">Email ID</string>
+    <string name="enteremail">Enter Email ID</string>
+</resources>
