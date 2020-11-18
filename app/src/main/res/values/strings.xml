@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">QuizHack1</string>
+    <string name="app_name">QuizHack</string>
     <string name="Projectname">QuizHack</string>
     <string name="selectuser">Select User</string>
     <string name="user">Student</string>
