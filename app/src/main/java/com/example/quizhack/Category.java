@@ -2,47 +2,94 @@ package com.example.quizhack;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
-public class Category extends AppCompatActivity implements View.OnClickListener {
-    LinearLayout layoutList;
-    Button addqst;
+import java.util.ArrayList;
+import java.util.List;
+
+public class Category extends AppCompatActivity  {
+    Button viewcategory,nextquestion,addcategory;
+    LinearLayout layout;
+    TextView slno;
+    EditText category_name;
+    EditText Category1;
     int n=0;
-    String val;
+    int lop=1;
+    String sln;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_category);
 
-        layoutList=(LinearLayout)findViewById(R.id.layout_list);
-        addqst=(Button)findViewById(R.id.button_add);
-        addqst.setOnClickListener(this);
 
+        Category1=(EditText)findViewById(R.id.input_Category);
+        //layout=findViewById(R.id.layoutlist);
+        //Categorydailog.catagorieslist.add("Select Category");
+        // Categorydailog.catagorieslist.add("code");
+        //Categorydailog.catagorieslist.add("Mental ability");
+
+       // Category1 = (EditText) findViewById(R.id.category_name);
+        nextquestion = (Button) findViewById(R.id.category_next);
+        nextquestion.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Category.this, Add_Questions.class);
+                startActivity(intent);
+            }
+        });
+
+
+        addcategory = (Button) findViewById(R.id.add_category);
+        addcategory.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+               if (Category1.getText().toString().trim().length() == 0) {
+                    Toast.makeText(Category.this, "Error! Enter category name", Toast.LENGTH_LONG).show();
+                }else if(Categorydailog.catagorieslist.contains(Category1.getText().toString()))
+
+               {
+                   Toast.makeText(Category.this, "Override! "+Category1.getText().toString()+" Is exist", Toast.LENGTH_SHORT).show();
+                   }
+               else {
+                    Categorydailog.catagorieslist.add(Category1.getText().toString());
+                    Toast.makeText(Category.this, Category1.getText().toString(), Toast.LENGTH_SHORT).show();
+                    Category1.getText().clear();
+                }
+
+
+
+
+            }
+        });
+
+        viewcategory=(Button)findViewById(R.id.View_category);
+        viewcategory.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (Categorydailog.catagorieslist.toString().length()==0)
+                {
+                    Toast.makeText(Category.this,"List is Empty",Toast.LENGTH_LONG).show();
+                }else{
+
+                openDialog();}
+            }
+        });
     }
-    @Override
-    public void onClick(View v) {
-        n=n+1;
-        val=String.valueOf(n);
-        addView();
-
+    public void openDialog(){
+        Categorydailog dialog=new Categorydailog();
+        dialog.show(getSupportFragmentManager(),"Example Dialog");
     }
 
-    private void addView() {
-        final View categorylist = getLayoutInflater().inflate(R.layout.category_resource,null,false);
-        TextView slno=(TextView)categorylist.findViewById(R.id.slno);
 
 
-        slno.setText(val);
-        EditText category_name=(EditText)categorylist.findViewById(R.id.category_name);
-        layoutList.addView(categorylist);
-
-    }
 
 
 

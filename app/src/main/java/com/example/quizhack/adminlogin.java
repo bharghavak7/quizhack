@@ -24,7 +24,7 @@ btnnxt=(Button)findViewById(R.id.admin_next);
 btnnxt.setOnClickListener(new View.OnClickListener() {
     @Override
     public void onClick(View v) {
-        Intent intent=new Intent(adminlogin.this,Category.class);
+        Intent intent=new Intent(adminlogin.this,Main_Menu.class);
         startActivity(intent);
     }
 });
