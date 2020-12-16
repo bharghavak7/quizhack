@@ -98,7 +98,6 @@
         app:layout_constraintVertical_bias="0.553" />
 
 
-
     <androidx.appcompat.widget.AppCompatSpinner
         android:id="@+id/select_catrgory"
         android:layout_width="208dp"

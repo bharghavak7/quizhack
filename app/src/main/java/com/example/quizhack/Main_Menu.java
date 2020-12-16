@@ -21,7 +21,15 @@ Button setqstion,viewqstion,deleteqstion,rsult;
         setqstion.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent=new Intent(Main_Menu.this,Category.class);
+                Intent intent=new Intent(Main_Menu.this,Time_Code.class);
+                startActivity(intent);
+
+            }
+        });
+        viewqstion.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(Main_Menu.this,View_Questions.class);
                 startActivity(intent);
 
             }
