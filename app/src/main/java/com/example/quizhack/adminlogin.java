@@ -28,8 +28,9 @@ public static String mail;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_adminlogin);
-
+      //  FirebaseDatabase.getInstance().setPersistenceEnabled(true);
         firebaseDatabaseglobal=FirebaseDatabase.getInstance().getReference();
+        firebaseDatabaseglobal.keepSynced(true);
         Email=(EditText)findViewById(R.id.email);
         btnnxt=(Button)findViewById(R.id.admin_next);
         btnnxt.setOnClickListener(new View.OnClickListener() {

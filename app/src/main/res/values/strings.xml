@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name"></string>
+    <string name="app_name">Quiz Hack</string>
     <string name="Projectname">QuizHack</string>
     <string name="selectuser">Select User</string>
     <string name="user">Student</string>
@@ -7,4 +7,7 @@
     <string name="next">Next</string>
     <string name="email">Email ID</string>
     <string name="enteremail">Enter Email ID</string>
+    <string name="student_code">Student_Code</string>
+    <string name="class_code">Class_Code</string>
+    <string name="login">Login</string>
 </resources>

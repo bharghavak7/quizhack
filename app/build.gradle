@@ -34,7 +34,7 @@ dependencies {
     implementation 'androidx.appcompat:appcompat:1.2.0'
     implementation 'com.google.android.material:material:1.2.1'
     implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
-    implementation 'com.google.firebase:firebase-database:19.5.1'
+    //implementation 'com.google.firebase:firebase-database:19.5.1'
     //implementation 'android.recyclerview:recyclerview:1.1.0'
    // implementation 'android.recyclerview:recyclerview:selection:1.1.0-rc01'
     testImplementation 'junit:junit:4.+'
