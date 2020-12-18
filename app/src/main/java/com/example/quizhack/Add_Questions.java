@@ -11,6 +11,9 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
+//import com.google.firebase.database.DatabaseReference;
+//import com.google.firebase.database.FirebaseDatabase;
+
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -36,8 +39,8 @@ public class Add_Questions extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add__questions);
 
-        firebasedatabase=firebaseDatabaseglobal.child("Questions").child(Categorydailog.secreate);
-        firebasedatabase.child("Timings").child("Time").setValue(Categorydailog.timer);
+       firebasedatabase=firebaseDatabaseglobal.child("Questions").child(Categorydailog.secreate);
+       firebasedatabase.child("Timings").child("Time").setValue(Categorydailog.timer);
 
         question=(EditText)findViewById(R.id.question);
         option1=(EditText)findViewById(R.id.option1);
@@ -104,7 +107,7 @@ public class Add_Questions extends AppCompatActivity {
                     if (an.contentEquals(opti1) || an.contentEquals(opti2) || an.contentEquals(opti3) || an.contentEquals(opti4))
                     {
                         if (TextUtils.isEmpty(Questions)) {
-                            DatabaseReference reference=FirebaseDatabase.getInstance().getReference().child("Questions");
+                           // DatabaseReference reference=FirebaseDatabase.getInstance().getReference().child("Questions");
 
                             createQuestion(ques, opti1, opti2, opti3, opti4, an, spin);
                             slno++;

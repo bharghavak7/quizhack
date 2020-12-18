@@ -30,7 +30,7 @@ public static String mail;
         setContentView(R.layout.activity_adminlogin);
       //  FirebaseDatabase.getInstance().setPersistenceEnabled(true);
         firebaseDatabaseglobal=FirebaseDatabase.getInstance().getReference();
-        firebaseDatabaseglobal.keepSynced(true);
+       firebaseDatabaseglobal.keepSynced(true);
         Email=(EditText)findViewById(R.id.email);
         btnnxt=(Button)findViewById(R.id.admin_next);
         btnnxt.setOnClickListener(new View.OnClickListener() {
@@ -45,7 +45,7 @@ public static String mail;
 
 
 
-          firebaseDatabaseglobal.child("Email").child(mail);
+       // firebaseDatabaseglobal.child("Email").child(mail);
 
 
             Intent intent=new Intent(adminlogin.this,Main_Menu.class);
