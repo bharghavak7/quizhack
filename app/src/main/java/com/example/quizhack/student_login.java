@@ -2,6 +2,7 @@ package com.example.quizhack;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -23,20 +24,17 @@ DatabaseReference firebasereference;
         student_code=findViewById(R.id.stu_code);
         class_code=findViewById(R.id.clas_code);
         loginbtn=findViewById(R.id.loginbtn);
-        FirebaseDatabase.getInstance().setPersistenceEnabled(true);
+      //  FirebaseDatabase.getInstance().setPersistenceEnabled(true);
 
-       firebasereference= FirebaseDatabase.getInstance().getReference("Questions");
-        firebasereference.keepSynced(true);
+     //  firebasereference= FirebaseDatabase.getInstance().getReference("Questions");
+       // firebasereference.keepSynced(true);
         loginbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String clas_code=class_code.getText().toString();
-               if (firebasereference.orderByKey().equals(clas_code)){
-
-
-
-                }
-
+              //  String clas_code=class_code.getText().toString();
+           //    if (firebasereference.orderByKey().equals(clas_code)){     }
+                Intent intent=new Intent(student_login.this,Student_question_view.class);
+                startActivity(intent);
 
             }
         });
