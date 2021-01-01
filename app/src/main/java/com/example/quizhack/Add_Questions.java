@@ -1,5 +1,6 @@
 package com.example.quizhack;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatSpinner;
 import android.content.Intent;
@@ -14,8 +15,11 @@ import android.widget.Toast;
 //import com.google.firebase.database.DatabaseReference;
 //import com.google.firebase.database.FirebaseDatabase;
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,10 +31,11 @@ public class Add_Questions extends AppCompatActivity {
     private DatabaseReference firebasedatabase;
     private FirebaseDatabase firebaseinstance;
     private String Questions;
-    int qs=0;
-     int  slno=1;
+    int breaksnap=0;
+     long slno=1;
+     long bh;
     TextView sl;
-    String val;
+    String QNo;
     EditText question,option1,option2,option3,option4,ans;
     Button nextqs,addquestion;
     AppCompatSpinner select_category;
@@ -51,8 +56,23 @@ public class Add_Questions extends AppCompatActivity {
 
         Categorydailog.catagorieslist.add(0,"Select Category");
         sl = (TextView) this.<View>findViewById(R.id.qslno);
-        val=String.valueOf(slno);
-        sl.setText(val);
+        firebasedatabase.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                slno =snapshot.getChildrenCount();
+                QNo=String.valueOf(slno);
+                sl.setText(QNo);
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+
+
         nextqs=(Button)findViewById(R.id.nextqst);
         addquestion=(Button)findViewById(R.id.addqst);
 
@@ -108,17 +128,36 @@ public class Add_Questions extends AppCompatActivity {
                     {
                         if (TextUtils.isEmpty(Questions)) {
                            // DatabaseReference reference=FirebaseDatabase.getInstance().getReference().child("Questions");
+                            breaksnap=0;
+                            firebasedatabase.addValueEventListener(new ValueEventListener() {
+                                @Override
+                                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                    slno =snapshot.getChildrenCount();
+                                    if(breaksnap==0) {
+                                        createQuestion(ques, opti1, opti2, opti3, opti4, an, spin);
+                                        QNo = String.valueOf(slno);
+                                        sl.setText(QNo);
+                                        question.getText().clear();
+                                        option1.getText().clear();
+                                        option2.getText().clear();
+                                        option3.getText().clear();
+                                        option4.getText().clear();
+                                        ans.getText().clear();
+                                    }
 
-                            createQuestion(ques, opti1, opti2, opti3, opti4, an, spin);
-                            slno++;
-                            val=String.valueOf(slno);
-                            sl.setText(val);
-                            question.getText().clear();
-                            option1.getText().clear();
-                            option2.getText().clear();
-                            option3.getText().clear();
-                            option4.getText().clear();
-                            ans.getText().clear();
+
+                                }
+
+                                @Override
+                                public void onCancelled(@NonNull DatabaseError error) {
+
+                                }
+                            });
+
+
+
+
+
                            //if(Time_Code.addid==true) {
                               // Toast.makeText(Add_Questions.this, "Tested okey", Toast.LENGTH_SHORT).show();
                                 //adminlogin.firebaseDatabaseemail.child("Email").child(adminlogin.mail).child(Categorydailog.secreate);
@@ -140,9 +179,9 @@ public class Add_Questions extends AppCompatActivity {
 
     private void createQuestion(String ques, String opti1, String opti2, String opti3, String opti4, String an, String spin) {
         if (TextUtils.isEmpty(Questions)){
-            qs++;
-            String sl=String.valueOf(qs);
-            Questions=sl;
+
+
+            Questions=QNo;
 
 
             firebasedatabase.child(Questions).child("Question").setValue(ques);
@@ -153,6 +192,8 @@ public class Add_Questions extends AppCompatActivity {
             firebasedatabase.child(Questions).child("Ans").setValue(an);
             firebasedatabase.child(Questions).child("Category").setValue(spin);
             Questions="";
+            slno++;
+            breaksnap=1;
         }
 
 

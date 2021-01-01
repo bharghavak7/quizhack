@@ -39,15 +39,16 @@ public class Student_question_view extends AppCompatActivity {
         roption3 = findViewById(R.id.ROption3);
         roption4 = findViewById(R.id.ROption4);
         push=findViewById(R.id.push);
-        push.setText("Submit");
-        t1 = findViewById(R.id.count);
+
+        t1 = findViewById(R.id.Questiondisplay);
+
         firebasereference = FirebaseDatabase.getInstance().getReference("Questions").child("ghvg");
         firebasereference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 long countquestions = snapshot.getChildrenCount();
                 ll = countquestions - 1;
-
+                Toast.makeText(Student_question_view.this, "total "+ ll, Toast.LENGTH_SHORT).show();
                 cv = String.valueOf(ll);
 
                 t1.setText(snapshot.child(cv).child("Question").getValue().toString());
@@ -55,7 +56,7 @@ public class Student_question_view extends AppCompatActivity {
                 roption2.setText(snapshot.child(cv).child("Option2").getValue().toString());
                 roption3.setText(snapshot.child(cv).child("Option3").getValue().toString());
                 roption4.setText(snapshot.child(cv).child("Option4").getValue().toString());
-                ans = snapshot.child(cv).child("Ans").getValue().toString();
+                 ans = snapshot.child(cv).child("Ans").getValue().toString();
 
             }
 

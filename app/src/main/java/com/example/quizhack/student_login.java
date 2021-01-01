@@ -24,10 +24,8 @@ DatabaseReference firebasereference;
         student_code=findViewById(R.id.stu_code);
         class_code=findViewById(R.id.clas_code);
         loginbtn=findViewById(R.id.loginbtn);
-      //  FirebaseDatabase.getInstance().setPersistenceEnabled(true);
 
-     //  firebasereference= FirebaseDatabase.getInstance().getReference("Questions");
-       // firebasereference.keepSynced(true);
+
         loginbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
